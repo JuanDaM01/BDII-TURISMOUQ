@@ -1,13 +1,13 @@
 # TurismoUQ · Plataforma de reservas turísticas del Quindío
 
-Proyecto integrador de Bases de Datos II (código 12338), periodo 2026-2.
+Proyecto integrador de Bases de Datos II, periodo 2026-2.
 Universidad del Quindío · Ingeniería de Sistemas y Computación.
 Docente: Carolina Londoño Idárraga.
 
 ## Integrantes
-- Juan (completar apellidos)
-- Integrante 2
-- Integrante 3
+- Juan David Martinez
+- Santiago Ramirez
+- Sebastian Amaya
 
 ## Entrega 1 · Modelo y consultas de análisis
 
@@ -23,7 +23,7 @@ Docente: Carolina Londoño Idárraga.
 | 3 | scripts/02_carga.sql | TURISMOUQ | Carga datos con PL/SQL y DBMS_RANDOM |
 | 4 | scripts/03_consultas.sql | TURISMOUQ | Siete consultas de análisis, numeradas y comentadas |
 
-Cada script se ejecuta completo (F5 en SQL Developer) de arriba hacia abajo.
+Cada script se ejecuta completo de arriba hacia abajo.
 
 ### Documentación
 - docs/ contiene el documento con el MER, las reglas de negocio y las decisiones de diseño.

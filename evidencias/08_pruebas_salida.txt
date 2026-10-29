@@ -1,0 +1,372 @@
+
+NOCHE      TEMPORADA                                                                        NIVEL VALOR_NOCHE
+---------- -------------------------------------------------------------------------------- ----- -----------
+2025-12-10 Baja 2025-11-15                                                                  BAJA       204000
+2025-12-11 Baja 2025-11-15                                                                  BAJA       204000
+2025-12-12 Baja 2025-11-15                                                                  BAJA       204000
+2025-12-13 Baja 2025-11-15                                                                  BAJA       204000
+2025-12-14 Baja 2025-11-15                                                                  BAJA       204000
+2025-12-15 Diciembre-enero 2025-2026                                                        ALTA       276000
+2025-12-16 Diciembre-enero 2025-2026                                                        ALTA       276000
+2025-12-17 Diciembre-enero 2025-2026                                                        ALTA       276000
+
+8 filas seleccionadas. 
+
+1.2 Estadía que cruza temporadas, habitación 1: fn_valor_estadia = 1848000 | suma noche a noche en SQL = 1848000 -> COINCIDEN
+
+Procedimiento PL/SQL terminado correctamente.
+1.3 Una sola temporada: fn_valor_estadia = 822000 | 3 x tarifa de la temporada = 822000 -> COINCIDEN
+
+Procedimiento PL/SQL terminado correctamente.
+1.4 Error esperado: ORA-20001: El check-out debe ser posterior al check-in.
+
+Procedimiento PL/SQL terminado correctamente.
+
+LINEAS_REVISADAS DIFERENCIAS
+---------------- -----------
+            5000           0
+
+Habitación de prueba 1 (capacidad 4), cliente 1
+2.1 Reserva válida del 9 al 14 de enero de 2027 (cruza temporadas) -> CREADA, id_reserva 66402
+2.2 Misma habitación y mismas fechas -> RECHAZADA: ORA-20002: Habitación no disponible: la habitación 1 ya está reservada en alguna noche entre 2027-01-09 y 2027-01-14.
+2.3 Cruce parcial, del 12 al 16 de enero -> RECHAZADA: ORA-20002: Habitación no disponible: la habitación 1 ya está reservada en alguna noche entre 2027-01-12 y 2027-01-16.
+2.4 Check-out igual al check-in -> RECHAZADA: ORA-20001: El check-out debe ser posterior al check-in.
+2.5 Check-out anterior al check-in -> RECHAZADA: ORA-20001: El check-out debe ser posterior al check-in.
+2.6 Capacidad excedida (huéspedes = capacidad + 1) -> RECHAZADA: ORA-20003: Capacidad excedida o huéspedes inválidos: se pidieron 5 y la habitación admite como máximo 4.
+2.7 Habitación inexistente -> RECHAZADA: ORA-20004: La habitación 999999999 no existe.
+2.8 Reserva contigua, empieza el día en que termina la anterior (permitida) -> CREADA, id_reserva 66403
+
+Procedimiento PL/SQL terminado correctamente.
+
+ID_RESERVA ESTADO     FECHA_RE CHECK_IN CHECK_OU ID_HABITACION  HUESPEDES VALOR_ESTADIA
+---------- ---------- -------- -------- -------- ------------- ---------- -------------
+     66402 PENDIENTE  29/10/26 09/01/27 14/01/27             1          1       1395000
+     66403 PENDIENTE  29/10/26 14/01/27 16/01/27             1          1        558000
+
+3.1 BLOQUEADO por el disparador: ORA-20010: Solape de reservas: la habitación 1 ya está ocupada en alguna noche entre 2027-01-12 y 2027-01-16.
+ORA-06512: en "TURISMOUQ.TRG_RESHA_SOLAPE", línea 49
+ORA-04088: error durante la ejecución del disparador 'TURISMOUQ.TRG_RESHA_SOLAPE'
+3.2 BLOQUEADO por el disparador: ORA-20010: Solape de reservas: la habitación 1 ya está ocupada en alguna noche entre 2027-01-12 y 2027-01-16.
+ORA-06512: en "TURISMOUQ.TRG_RESHA_SOLAPE", línea 49
+ORA-04088: error durante la ejecución del disparador 'TURISMOUQ.TRG_RESHA_SOLAPE'
+
+Procedimiento PL/SQL terminado correctamente.
+Rollback terminado.
+
+RESERVAS_DE_PRUEBA_QUE_QUEDAN
+-----------------------------
+                            0
+
+Liquidación 2025-12: 60 alojamientos, 671 reservas completadas, total liquidado 748939000
+
+Procedimiento PL/SQL terminado correctamente.
+
+ALOJAMIENTOS   RESERVAS TOTAL_LIQUIDADO
+------------ ---------- ---------------
+          60        671       748939000
+
+
+RESERVAS_DIRECTO TOTAL_DIRECTO
+---------------- -------------
+             671     748939000
+
+
+ALOJAMIENTO                                                                                                              MUNICIPIO                                                    RESERVAS_COMPLETADAS INGRESO_ESTADIAS INGRESO_SERVICIOS TOTAL_LIQUIDADO
+------------------------------------------------------------------------------------------------------------------------ ------------------------------------------------------------ -------------------- ---------------- ----------------- ---------------
+Hotel El Higuerón                                                                                                        Circasia                                                                       34         39194000           6176500        45370500
+Hotel La Aurora                                                                                                          Armenia                                                                        43         31769000          11198000        42967000
+Hotel Cielo Abierto                                                                                                      Montenegro                                                                     32         28778000           5879500        34657500
+Hotel Vientos del Eje                                                                                                    Circasia                                                                       28         23288000           6379500        29667500
+Hotel El Yarumo                                                                                                          Armenia                                                                        44         15588000          10054500        25642500
+Hotel Brisa Andina                                                                                                       Calarcá                                                                        14         21424000           3976500        25400500
+Hotel El Cedro                                                                                                           Calarcá                                                                        11         22538000           2669500        25207500
+Glamping La Cascada                                                                                                      La Tebaida                                                                      9         21394000           3061500        24455500
+Hotel El Roble                                                                                                           Armenia                                                                        26         20481000           3294500        23775500
+Hotel La Colina                                                                                                          Salento                                                                        24         18944000           4385000        23329000
+
+10 filas seleccionadas. 
+
+Liquidación 2026-01: 60 alojamientos, 818 reservas completadas, total liquidado 854657000
+
+Procedimiento PL/SQL terminado correctamente.
+4.5 Error esperado: ORA-20008: Año o mes inválido para la liquidación.
+
+Procedimiento PL/SQL terminado correctamente.
+Confirmación terminada.
+
+      ANIO        MES ALOJAMIENTOS   RESERVAS TOTAL_LIQUIDADO
+---------- ---------- ------------ ---------- ---------------
+      2025         12           60        671       748939000
+      2026          1           60        818       854657000
+
+
+PAQUETE                                                                                                                          SUBPROGRAMA                                                                                                                     
+-------------------------------------------------------------------------------------------------------------------------------- --------------------------------------------------------------------------------------------------------------------------------
+PKG_RESERVAS                                                                                                                     FN_VALOR_ESTADIA                                                                                                                
+PKG_RESERVAS                                                                                                                     SP_CREAR_RESERVA                                                                                                                
+PKG_RESERVAS                                                                                                                     SP_LIQUIDACION_MENSUAL                                                                                                          
+
+
+OBJECT_NAME                                                                                                                      OBJECT_TYPE             STATUS 
+-------------------------------------------------------------------------------------------------------------------------------- ----------------------- -------
+MV_OCUPACION_MENSUAL                                                                                                             MATERIALIZED VIEW       VALID  
+MV_OCUPACION_MENSUAL                                                                                                             TABLE                   VALID  
+PKG_RESERVAS                                                                                                                     PACKAGE                 VALID  
+PKG_RESERVAS                                                                                                                     PACKAGE BODY            VALID  
+TRG_RESHA_SOLAPE                                                                                                                 TRIGGER                 VALID  
+TRG_TARIFA_AUDITORIA                                                                                                             TRIGGER                 VALID  
+
+6 filas seleccionadas. 
+
+6.1 Tarifas actualizadas con una sola sentencia: 3
+6.2 Tarifas borradas con una sola sentencia: 1
+
+Procedimiento PL/SQL terminado correctamente.
+
+ID_AUDITORIA FECHA               USUARIO                                                                                                                          OPERACION  ID_HABITACION ID_TEMPORADA VALOR_ANTERIOR VALOR_NUEVO
+------------ ------------------- -------------------------------------------------------------------------------------------------------------------------------- ---------- ------------- ------------ -------------- -----------
+           1 2026-10-29 03:49:40 TURISMOUQ                                                                                                                        UPDATE                 1           25         279000      307000
+           2 2026-10-29 03:49:40 TURISMOUQ                                                                                                                        UPDATE                 1           20         279000      307000
+           3 2026-10-29 03:49:40 TURISMOUQ                                                                                                                        UPDATE                 1           18         279000      307000
+           4 2026-10-29 03:49:40 TURISMOUQ                                                                                                                        DELETE                 1           22         268000            
+
+Rollback terminado.
+
+AUDITORIAS_TRAS_ROLLBACK
+------------------------
+                       0
+
+
+TABLE_NAME                                                                                                                       TABLESPACE_NAME               
+-------------------------------------------------------------------------------------------------------------------------------- ------------------------------
+RESERVA                                                                                                                          USERS                         
+RESERVA_HISTORICO                                                                                                                TS_HISTORICO_RESERVAS         
+
+
+SEGMENT_NAME                                                                                                                     SEGMENT_TYPE       TABLESPACE_NAME               
+-------------------------------------------------------------------------------------------------------------------------------- ------------------ ------------------------------
+PK_RESERVA_HISTORICO                                                                                                             INDEX              TS_HISTORICO_RESERVAS         
+RESERVA_HISTORICO                                                                                                                TABLE              TS_HISTORICO_RESERVAS         
+
+
+TABLESPACE_NAME        MAX_BYTES
+--------------------- ----------
+TS_HISTORICO_RESERVAS         -1
+
+
+EN_HISTORICO  ESPERADAS
+------------ ----------
+       15499      15499
+
+
+FILAS_DISTINTAS
+---------------
+              0
+
+
+MUNICIPIO                                                           MES NOCHES_OCUPADAS HABITACIONES PCT_OCUPACION
+------------------------------------------------------------ ---------- --------------- ------------ -------------
+Armenia                                                               1             808          231          11,3
+Armenia                                                               6             875          231          12,6
+Armenia                                                              12             715          231            10
+Córdoba                                                               1               6            4           4,8
+Córdoba                                                               6              24            4            20
+Córdoba                                                              12               2            4           1,6
+Salento                                                               1             188           54          11,2
+Salento                                                               6             232           54          14,3
+Salento                                                              12             182           54          10,9
+
+9 filas seleccionadas. 
+
+Procedimiento PL/SQL terminado correctamente.
+
+MVIEW_NAME                                                                                                                       REFRESH_M REFRESH_ ULTIMO_REFRESCO    
+-------------------------------------------------------------------------------------------------------------------------------- --------- -------- -------------------
+MV_OCUPACION_MENSUAL                                                                                                             DEMAND    COMPLETE 2026-10-29 03:49:41
+
+
+NOCHE      TEMPORADA                                                                        NIVEL VALOR_NOCHE
+---------- -------------------------------------------------------------------------------- ----- -----------
+2025-12-10 Baja 2025-11-15                                                                  BAJA       204000
+2025-12-11 Baja 2025-11-15                                                                  BAJA       204000
+2025-12-12 Baja 2025-11-15                                                                  BAJA       204000
+2025-12-13 Baja 2025-11-15                                                                  BAJA       204000
+2025-12-14 Baja 2025-11-15                                                                  BAJA       204000
+2025-12-15 Diciembre-enero 2025-2026                                                        ALTA       276000
+2025-12-16 Diciembre-enero 2025-2026                                                        ALTA       276000
+2025-12-17 Diciembre-enero 2025-2026                                                        ALTA       276000
+
+8 filas seleccionadas. 
+
+1.2 Estadía que cruza temporadas, habitación 1: fn_valor_estadia = 1848000 | suma noche a noche en SQL = 1848000 -> COINCIDEN
+
+Procedimiento PL/SQL terminado correctamente.
+1.3 Una sola temporada: fn_valor_estadia = 822000 | 3 x tarifa de la temporada = 822000 -> COINCIDEN
+
+Procedimiento PL/SQL terminado correctamente.
+1.4 Error esperado: ORA-20001: El check-out debe ser posterior al check-in.
+
+Procedimiento PL/SQL terminado correctamente.
+
+LINEAS_REVISADAS DIFERENCIAS
+---------------- -----------
+            5000           0
+
+Habitación de prueba 1 (capacidad 4), cliente 1
+2.1 Reserva válida del 9 al 14 de enero de 2027 (cruza temporadas) -> CREADA, id_reserva 66405
+2.2 Misma habitación y mismas fechas -> RECHAZADA: ORA-20002: Habitación no disponible: la habitación 1 ya está reservada en alguna noche entre 2027-01-09 y 2027-01-14.
+2.3 Cruce parcial, del 12 al 16 de enero -> RECHAZADA: ORA-20002: Habitación no disponible: la habitación 1 ya está reservada en alguna noche entre 2027-01-12 y 2027-01-16.
+2.4 Check-out igual al check-in -> RECHAZADA: ORA-20001: El check-out debe ser posterior al check-in.
+2.5 Check-out anterior al check-in -> RECHAZADA: ORA-20001: El check-out debe ser posterior al check-in.
+2.6 Capacidad excedida (huéspedes = capacidad + 1) -> RECHAZADA: ORA-20003: Capacidad excedida o huéspedes inválidos: se pidieron 5 y la habitación admite como máximo 4.
+2.7 Habitación inexistente -> RECHAZADA: ORA-20004: La habitación 999999999 no existe.
+2.8 Reserva contigua, empieza el día en que termina la anterior (permitida) -> CREADA, id_reserva 66406
+
+Procedimiento PL/SQL terminado correctamente.
+
+ID_RESERVA ESTADO     FECHA_RE CHECK_IN CHECK_OU ID_HABITACION  HUESPEDES VALOR_ESTADIA
+---------- ---------- -------- -------- -------- ------------- ---------- -------------
+     66405 PENDIENTE  29/10/26 09/01/27 14/01/27             1          1       1395000
+     66406 PENDIENTE  29/10/26 14/01/27 16/01/27             1          1        558000
+
+3.1 BLOQUEADO por el disparador: ORA-20010: Solape de reservas: la habitación 1 ya está ocupada en alguna noche entre 2027-01-12 y 2027-01-16.
+ORA-06512: en "TURISMOUQ.TRG_RESHA_SOLAPE", línea 49
+ORA-04088: error durante la ejecución del disparador 'TURISMOUQ.TRG_RESHA_SOLAPE'
+3.2 BLOQUEADO por el disparador: ORA-20010: Solape de reservas: la habitación 1 ya está ocupada en alguna noche entre 2027-01-12 y 2027-01-16.
+ORA-06512: en "TURISMOUQ.TRG_RESHA_SOLAPE", línea 49
+ORA-04088: error durante la ejecución del disparador 'TURISMOUQ.TRG_RESHA_SOLAPE'
+
+Procedimiento PL/SQL terminado correctamente.
+Rollback terminado.
+
+RESERVAS_DE_PRUEBA_QUE_QUEDAN
+-----------------------------
+                            0
+
+Liquidación 2025-12: 60 alojamientos, 671 reservas completadas, total liquidado 748939000
+
+Procedimiento PL/SQL terminado correctamente.
+
+ALOJAMIENTOS   RESERVAS TOTAL_LIQUIDADO
+------------ ---------- ---------------
+          60        671       748939000
+
+
+RESERVAS_DIRECTO TOTAL_DIRECTO
+---------------- -------------
+             671     748939000
+
+
+ALOJAMIENTO                                                                                                              MUNICIPIO                                                    RESERVAS_COMPLETADAS INGRESO_ESTADIAS INGRESO_SERVICIOS TOTAL_LIQUIDADO
+------------------------------------------------------------------------------------------------------------------------ ------------------------------------------------------------ -------------------- ---------------- ----------------- ---------------
+Hotel El Higuerón                                                                                                        Circasia                                                                       34         39194000           6176500        45370500
+Hotel La Aurora                                                                                                          Armenia                                                                        43         31769000          11198000        42967000
+Hotel Cielo Abierto                                                                                                      Montenegro                                                                     32         28778000           5879500        34657500
+Hotel Vientos del Eje                                                                                                    Circasia                                                                       28         23288000           6379500        29667500
+Hotel El Yarumo                                                                                                          Armenia                                                                        44         15588000          10054500        25642500
+Hotel Brisa Andina                                                                                                       Calarcá                                                                        14         21424000           3976500        25400500
+Hotel El Cedro                                                                                                           Calarcá                                                                        11         22538000           2669500        25207500
+Glamping La Cascada                                                                                                      La Tebaida                                                                      9         21394000           3061500        24455500
+Hotel El Roble                                                                                                           Armenia                                                                        26         20481000           3294500        23775500
+Hotel La Colina                                                                                                          Salento                                                                        24         18944000           4385000        23329000
+
+10 filas seleccionadas. 
+
+Liquidación 2026-01: 60 alojamientos, 818 reservas completadas, total liquidado 854657000
+
+Procedimiento PL/SQL terminado correctamente.
+4.5 Error esperado: ORA-20008: Año o mes inválido para la liquidación.
+
+Procedimiento PL/SQL terminado correctamente.
+Confirmación terminada.
+
+      ANIO        MES ALOJAMIENTOS   RESERVAS TOTAL_LIQUIDADO
+---------- ---------- ------------ ---------- ---------------
+      2025         12           60        671       748939000
+      2026          1           60        818       854657000
+
+
+PAQUETE                                                                                                                          SUBPROGRAMA                                                                                                                     
+-------------------------------------------------------------------------------------------------------------------------------- --------------------------------------------------------------------------------------------------------------------------------
+PKG_RESERVAS                                                                                                                     FN_VALOR_ESTADIA                                                                                                                
+PKG_RESERVAS                                                                                                                     SP_CREAR_RESERVA                                                                                                                
+PKG_RESERVAS                                                                                                                     SP_LIQUIDACION_MENSUAL                                                                                                          
+
+
+OBJECT_NAME                                                                                                                      OBJECT_TYPE             STATUS 
+-------------------------------------------------------------------------------------------------------------------------------- ----------------------- -------
+MV_OCUPACION_MENSUAL                                                                                                             MATERIALIZED VIEW       VALID  
+MV_OCUPACION_MENSUAL                                                                                                             TABLE                   VALID  
+PKG_RESERVAS                                                                                                                     PACKAGE                 VALID  
+PKG_RESERVAS                                                                                                                     PACKAGE BODY            VALID  
+TRG_RESHA_SOLAPE                                                                                                                 TRIGGER                 VALID  
+TRG_TARIFA_AUDITORIA                                                                                                             TRIGGER                 VALID  
+
+6 filas seleccionadas. 
+
+6.1 Tarifas actualizadas con una sola sentencia: 3
+6.2 Tarifas borradas con una sola sentencia: 1
+
+Procedimiento PL/SQL terminado correctamente.
+
+ID_AUDITORIA FECHA               USUARIO                                                                                                                          OPERACION  ID_HABITACION ID_TEMPORADA VALOR_ANTERIOR VALOR_NUEVO
+------------ ------------------- -------------------------------------------------------------------------------------------------------------------------------- ---------- ------------- ------------ -------------- -----------
+           5 2026-10-29 03:54:50 TURISMOUQ                                                                                                                        UPDATE                 1           25         279000      307000
+           6 2026-10-29 03:54:50 TURISMOUQ                                                                                                                        UPDATE                 1           20         279000      307000
+           7 2026-10-29 03:54:50 TURISMOUQ                                                                                                                        UPDATE                 1           18         279000      307000
+           8 2026-10-29 03:54:50 TURISMOUQ                                                                                                                        DELETE                 1           22         268000            
+
+Rollback terminado.
+
+AUDITORIAS_TRAS_ROLLBACK
+------------------------
+                       0
+
+
+TABLE_NAME                                                                                                                       TABLESPACE_NAME               
+-------------------------------------------------------------------------------------------------------------------------------- ------------------------------
+RESERVA                                                                                                                          USERS                         
+RESERVA_HISTORICO                                                                                                                TS_HISTORICO_RESERVAS         
+
+
+SEGMENT_NAME                                                                                                                     SEGMENT_TYPE       TABLESPACE_NAME               
+-------------------------------------------------------------------------------------------------------------------------------- ------------------ ------------------------------
+PK_RESERVA_HISTORICO                                                                                                             INDEX              TS_HISTORICO_RESERVAS         
+RESERVA_HISTORICO                                                                                                                TABLE              TS_HISTORICO_RESERVAS         
+
+
+TABLESPACE_NAME        MAX_BYTES
+--------------------- ----------
+TS_HISTORICO_RESERVAS         -1
+
+
+EN_HISTORICO  ESPERADAS
+------------ ----------
+       15499      15499
+
+
+FILAS_DISTINTAS
+---------------
+              0
+
+
+MUNICIPIO                                                           MES NOCHES_OCUPADAS HABITACIONES PCT_OCUPACION
+------------------------------------------------------------ ---------- --------------- ------------ -------------
+Armenia                                                               1             808          231          11,3
+Armenia                                                               6             875          231          12,6
+Armenia                                                              12             715          231            10
+Córdoba                                                               1               6            4           4,8
+Córdoba                                                               6              24            4            20
+Córdoba                                                              12               2            4           1,6
+Salento                                                               1             188           54          11,2
+Salento                                                               6             232           54          14,3
+Salento                                                              12             182           54          10,9
+
+9 filas seleccionadas. 
+
+Procedimiento PL/SQL terminado correctamente.
+
+MVIEW_NAME                                                                                                                       REFRESH_M REFRESH_ ULTIMO_REFRESCO    
+-------------------------------------------------------------------------------------------------------------------------------- --------- -------- -------------------
+MV_OCUPACION_MENSUAL                                                                                                             DEMAND    COMPLETE 2026-10-29 03:54:50
+

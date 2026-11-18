@@ -1,0 +1,83 @@
+
+Vista creada.
+
+
+Vista creada.
+
+
+Vista creada.
+
+
+Vista creada.
+
+
+Comentario creado.
+
+
+Comentario creado.
+
+
+Comentario creado.
+
+
+Comentario creado.
+
+
+VIEW_NAME															 R
+-------------------------------------------------------------------------------------------------------------------------------- -
+V_REC_CLIENTES															 N
+V_REC_HABITACIONES														 Y
+V_REC_OCUPACION 														 Y
+V_REC_RESERVAS															 Y
+
+
+COLUMN_NAME															 UPD INS
+-------------------------------------------------------------------------------------------------------------------------------- --- ---
+CIUDAD_ORIGEN															 YES YES
+CORREO																 YES YES
+DOCUMENTO															 YES YES
+FECHA_REGISTRO															 YES YES
+ID_CLIENTE															 YES YES
+NOMBRE																 YES YES
+TELEFONO															 YES YES
+
+7 filas seleccionadas.
+
+
+ID_HABITACION ALOJAMIENTO													       NUMERO	  TIPO
+------------- ------------------------------------------------------------------------------------------------------------------------ ---------- ----------
+ CAPACIDAD TARIFA_HOY
+---------- ----------
+	  280 Hotel La Colina													       206	  SENCILLA
+	 2	94000
+
+	  269 Hotel La Colina													       105	  SENCILLA
+	 2	95000
+
+	  278 Hotel La Colina													       204	  SENCILLA
+	 2	95000
+
+	  277 Hotel La Colina													       203	  SENCILLA
+	 2	95000
+
+	  270 Hotel La Colina													       106	  SENCILLA
+	 2	96000
+
+	  283 Hotel La Colina													       209	  SENCILLA
+	 2	98000
+
+	  240 Finca Los Nogales 												       C4	  DOBLE
+	 3     113000
+
+	  256 Finca La Pradera													       C2	  DOBLE
+	 2     116000
+
+	  268 Hotel La Colina													       104	  DOBLE
+	 3     118000
+
+	  265 Hotel La Colina													       101	  DOBLE
+	 4     119000
+
+
+10 filas seleccionadas.
+

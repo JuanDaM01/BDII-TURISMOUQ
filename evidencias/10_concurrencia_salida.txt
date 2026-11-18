@@ -1,0 +1,60 @@
+Experimento de concurrencia ejecutado con dos sesiones SQL*Plus en paralelo (misma secuencia T1..T9 del script 10_concurrencia.sql, con pausas DBMS_SESSION.SLEEP para fijar el orden).
+
+===== SESION A
+HABITACION_EXPERIMENTO
+----------------------
+		     1
+Transcurrido: 00:00:00.00
+T1 A 14:10:04 -> reserva 25015 creada (sin COMMIT)
+Procedimiento PL/SQL terminado correctamente.
+Transcurrido: 00:00:00.02
+Procedimiento PL/SQL terminado correctamente.
+Transcurrido: 00:00:04.00
+Confirmación terminada.
+Transcurrido: 00:00:00.00
+Procedimiento PL/SQL terminado correctamente.
+Transcurrido: 00:00:04.00
+ID_RESERVA ID_CLIENTE ID_HABITACION CHECK_IN CHECK_OU ESTADO
+---------- ---------- ------------- -------- -------- ----------
+     25015	    1		  1 05/01/27 08/01/27 PENDIENTE
+     25016	    2		  1 06/01/27 09/01/27 PENDIENTE
+Transcurrido: 00:00:00.00
+2 filas suprimidas.
+Transcurrido: 00:00:00.00
+2 filas suprimidas.
+Transcurrido: 00:00:00.01
+Confirmación terminada.
+Transcurrido: 00:00:00.00
+T6 A 14:10:12 -> reserva 25017 creada con FOR UPDATE (sin COMMIT)
+Procedimiento PL/SQL terminado correctamente.
+Transcurrido: 00:00:00.00
+Procedimiento PL/SQL terminado correctamente.
+Transcurrido: 00:00:08.00
+Confirmación terminada.
+Transcurrido: 00:00:00.00
+ID_RESERVA ID_CLIENTE ID_HABITACION CHECK_IN CHECK_OU ESTADO
+---------- ---------- ------------- -------- -------- ----------
+     25017	    1		  1 05/01/27 08/01/27 PENDIENTE
+Transcurrido: 00:00:00.00
+1 fila suprimida.
+Transcurrido: 00:00:00.00
+1 fila suprimida.
+Transcurrido: 00:00:00.00
+Confirmación terminada.
+Transcurrido: 00:00:00.00
+
+===== SESION B
+Procedimiento PL/SQL terminado correctamente.
+T2 B 14:10:06 -> reserva 25016 creada (sin COMMIT): B no ve la reserva de A
+Procedimiento PL/SQL terminado correctamente.
+Transcurrido: 00:00:00.00
+Procedimiento PL/SQL terminado correctamente.
+Transcurrido: 00:00:03.01
+Confirmación terminada.
+Transcurrido: 00:00:00.00
+Procedimiento PL/SQL terminado correctamente.
+Transcurrido: 00:00:05.01
+T7 B 14:10:14 -> pide la habitaciÃ³n
+T8 B 14:10:20 -> RECHAZADA: ORA-20002: HabitaciÃ³n no disponible: la habitaciÃ³n 1 ya estÃ¡ reservada en alguna noche entre 2027-01-06 y 2027-01-09.
+Procedimiento PL/SQL terminado correctamente.
+Transcurrido: 00:00:05.99

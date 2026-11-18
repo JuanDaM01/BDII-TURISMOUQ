@@ -1,0 +1,196 @@
+
+HABITACIONES_VISIBLES                                                                                                                                                                                   
+---------------------                                                                                                                                                                                   
+                  650                                                                                                                                                                                   
+
+1 fila seleccionada.
+
+Transcurrido: 00:00:00.00
+
+ID_RESERVA CLIENTE                                                                                                                                                                                      
+---------- ------------------------------------------------------------------------------------------------------------------------                                                                     
+ALOJAMIENTO                                                                                                              CHECK_IN CHECK_OU ESTADO     VALOR_TOTAL     PAGADO                            
+------------------------------------------------------------------------------------------------------------------------ -------- -------- ---------- ----------- ----------                            
+      8280 Camilo Zapata Rodr√≠guez                                                                                                                                                                     
+Hotel La Aurora                                                                                                          25/09/26 02/10/26 CONFIRMADA     1409500    1409500                            
+                                                                                                                                                                                                        
+     17575 Juliana Ortiz Jim√©nez                                                                                                                                                                       
+Apartamentos Entre Cafetales                                                                                             26/09/26 03/10/26 CONFIRMADA     1641000    1641000                            
+                                                                                                                                                                                                        
+     11527 Mariana Rojas Vargas                                                                                                                                                                         
+Hotel El Yarumo                                                                                                          27/09/26 02/10/26 CONFIRMADA      702000     702000                            
+                                                                                                                                                                                                        
+     13432 Andrea G√≥mez S√°nchez                                                                                                                                                                       
+Hostal Los Naranjos                                                                                                      28/09/26 02/10/26 PENDIENTE       609500          0                            
+                                                                                                                                                                                                        
+      7774 Laura Giraldo Ospina                                                                                                                                                                         
+Glamping La Vega                                                                                                         28/09/26 02/10/26 PENDIENTE      2341500          0                            
+                                                                                                                                                                                                        
+
+5 filas seleccionadas.
+
+Transcurrido: 00:00:00.03
+SELECT * FROM turismouq.reserva WHERE ROWNUM <= 5
+                        *
+ERROR en lÌnea 1:
+ORA-00942: la tabla o vista no existe 
+
+
+Transcurrido: 00:00:00.00
+SELECT * FROM turismouq.cliente WHERE ROWNUM <= 5
+                        *
+ERROR en lÌnea 1:
+ORA-00942: la tabla o vista no existe 
+
+
+Transcurrido: 00:00:00.00
+UPDATE turismouq.v_rec_reservas SET estado = 'CANCELADA' WHERE ROWNUM = 1
+                 *
+ERROR en lÌnea 1:
+ORA-01031: privilegios insuficientes 
+
+
+Transcurrido: 00:00:00.00
+
+1 fila actualizada.
+
+Transcurrido: 00:00:00.00
+
+Rollback terminado.
+
+Transcurrido: 00:00:00.00
+UPDATE turismouq.v_rec_clientes
+                 *
+ERROR en lÌnea 1:
+ORA-01031: privilegios insuficientes 
+
+
+Transcurrido: 00:00:00.00
+
+Procedimiento PL/SQL terminado correctamente.
+
+Transcurrido: 00:00:00.05
+
+1 fila actualizada.
+
+Transcurrido: 00:00:00.00
+
+ConfirmaciÛn terminada.
+
+Transcurrido: 00:00:00.00
+
+1 fila actualizada.
+
+Transcurrido: 00:00:00.00
+
+ConfirmaciÛn terminada.
+
+Transcurrido: 00:00:00.00
+DELETE FROM turismouq.pago WHERE ROWNUM = 1
+                      *
+ERROR en lÌnea 1:
+ORA-01031: privilegios insuficientes 
+
+
+Transcurrido: 00:00:00.00
+SELECT * FROM turismouq.tarifa_auditoria
+                        *
+ERROR en lÌnea 1:
+ORA-00942: la tabla o vista no existe 
+
+
+Transcurrido: 00:00:00.00
+
+TIPO_ALOJAMIENTO                         INGRESOS_2025                                                                                                                                                  
+---------------------------------------- -------------                                                                                                                                                  
+Hotel                                       2523656000                                                                                                                                                  
+Glamping                                    1024638000                                                                                                                                                  
+Finca cafetera                               842582000                                                                                                                                                  
+Apartamento tur√≠stico                       548948000                                                                                                                                                  
+Hostal                                       454475000                                                                                                                                                  
+
+5 filas seleccionadas.
+
+Transcurrido: 00:00:00.06
+UPDATE turismouq.tarifa SET valor_noche = 1 WHERE ROWNUM = 1
+                 *
+ERROR en lÌnea 1:
+ORA-01031: privilegios insuficientes 
+
+
+Transcurrido: 00:00:00.00
+
+ID_AUDITORIA FECHA               USUARIO                                                                                                                          OPERACION   ID_TARIFA VALOR_ANTERIOR  
+------------ ------------------- -------------------------------------------------------------------------------------------------------------------------------- ---------- ---------- --------------  
+VALOR_NUEVO                                                                                                                                                                                             
+-----------                                                                                                                                                                                             
+           6 2026-11-18 14:08:47 UQ_ADMIN_ALOJ                                                                                                                    UPDATE              1         278000  
+     268000                                                                                                                                                                                             
+                                                                                                                                                                                                        
+           5 2026-11-18 14:08:47 UQ_ADMIN_ALOJ                                                                                                                    UPDATE              1         268000  
+     278000                                                                                                                                                                                             
+                                                                                                                                                                                                        
+
+2 filas seleccionadas.
+
+Transcurrido: 00:00:00.00
+DELETE FROM turismouq.tarifa_auditoria
+                      *
+ERROR en lÌnea 1:
+ORA-01031: privilegios insuficientes 
+
+
+Transcurrido: 00:00:00.00
+SELECT * FROM turismouq.cliente WHERE ROWNUM <= 5
+                        *
+ERROR en lÌnea 1:
+ORA-00942: la tabla o vista no existe 
+
+
+Transcurrido: 00:00:00.00
+ERROR:
+ORA-01017: nombre de usuario/contraseÒa no v·lidos; conexiÛn denegada 
+
+
+Advertencia: °Ya no est· conectado a ORACLE!
+ERROR:
+ORA-01017: nombre de usuario/contraseÒa no v·lidos; conexiÛn denegada 
+
+
+ERROR:
+ORA-01017: nombre de usuario/contraseÒa no v·lidos; conexiÛn denegada 
+
+
+ERROR:
+ORA-28000: La cuenta est· bloqueada. 
+
+
+
+1 fila suprimida.
+
+Transcurrido: 00:00:00.00
+
+1 fila suprimida.
+
+Transcurrido: 00:00:00.00
+
+1 fila suprimida.
+
+Transcurrido: 00:00:00.01
+
+ConfirmaciÛn terminada.
+
+Transcurrido: 00:00:00.00
+
+USUARIO                                                                                                                          OPERACION  VALOR_ANTERIOR VALOR_NUEVO                                  
+-------------------------------------------------------------------------------------------------------------------------------- ---------- -------------- -----------                                  
+UQ_ADMIN_ALOJ                                                                                                                    UPDATE             268000      278000                                  
+UQ_ADMIN_ALOJ                                                                                                                    UPDATE             278000      268000                                  
+
+2 filas seleccionadas.
+
+Transcurrido: 00:00:00.00
+
+Procedimiento PL/SQL terminado correctamente.
+
+Transcurrido: 00:00:00.16

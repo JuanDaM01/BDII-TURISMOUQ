@@ -1,0 +1,89 @@
+
+Paquete creado.
+
+
+Cuerpo del paquete creado.
+
+
+OBJECT_NAME															 OBJECT_TYPE		 STATUS
+-------------------------------------------------------------------------------------------------------------------------------- ----------------------- -------
+PKG_TRANSACCIONES														 PACKAGE		 VALID
+PKG_TRANSACCIONES														 PACKAGE BODY		 VALID
+
+
+ninguna fila seleccionada
+
+Paso 1: reserva 25010 creada
+
+Procedimiento PL/SQL terminado correctamente.
+
+
+Punto de grabaciÛn creado.
+
+
+1 fila creada.
+
+
+  RESERVAS	PAGOS
+---------- ----------
+	 1	    1
+
+
+Rollback terminado.
+
+
+  RESERVAS	PAGOS
+---------- ----------
+	 1	    0
+
+
+1 fila creada.
+
+
+1 fila actualizada.
+
+
+ConfirmaciÛn terminada.
+
+
+ID_RESERVA ESTADO     VALOR_ESTADIA	 MONTO METODO		    ESTADO_PAGO
+---------- ---------- ------------- ---------- -------------------- ------------
+     25010 CONFIRMADA	     837000	251000 PSE		    EXITOSO
+
+Reserva 25011 confirmada con el pago 37831 por 200000 de un total de 793000.
+4.1 OK -> reserva 25011, pago 37831
+Servicio descartado (ROLLBACK TO sp_reserva_creada): ORA-20012: El servicio 7 no existe o no pertenece al alojamiento 1.
+Reserva 25012 confirmada con el pago 37832 por 150000 de un total de 558000.
+4.2 OK sin servicio -> reserva 25012, pago 37832
+4.3 RECHAZADA y deshecha: ORA-20011: Pago inv√°lido: el monto debe ser mayor que 0 y no superar 558000 (estad√≠a + servicios).
+4.4 RECHAZADA y deshecha: ORA-20011: Pago inv√°lido: m√©todo BITCOIN no permitido.
+
+Procedimiento PL/SQL terminado correctamente.
+
+
+ID_RESERVA CHECK_IN CHECK_OU ESTADO	     PAGOS  SERVICIOS
+---------- -------- -------- ---------- ---------- ----------
+     25010 20/01/27 23/01/27 CONFIRMADA 	 1	    0
+     25011 24/01/27 26/01/27 CONFIRMADA 	 1	    1
+     25012 26/01/27 28/01/27 CONFIRMADA 	 1	    0
+
+
+3 filas suprimidas.
+
+
+1 fila suprimida.
+
+
+3 filas suprimidas.
+
+
+3 filas suprimidas.
+
+
+ConfirmaciÛn terminada.
+
+
+RESERVAS_DE_PRUEBA_QUE_QUEDAN
+-----------------------------
+			    0
+

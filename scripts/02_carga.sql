@@ -914,3 +914,51 @@ SELECT (SELECT COUNT(*) FROM resena) AS resenas,
           FROM resena rs JOIN reserva r ON r.id_reserva = rs.id_reserva
          GROUP BY r.id_alojamiento)) AS prom_maximo_por_alojamiento
   FROM dual;
+
+-- 7.10 Una reserva con varias habitaciones: la primera reserva de grupo con lineas de fechas distintas
+SELECT r.id_reserva,
+       r.check_in  AS in_reserva,  r.check_out  AS out_reserva,
+       rh.id_habitacion,
+       rh.check_in AS in_linea,    rh.check_out AS out_linea,
+       rh.huespedes, rh.valor_estadia
+  FROM reserva r
+  JOIN reserva_habitacion rh ON rh.id_reserva = r.id_reserva
+ WHERE r.id_reserva = (SELECT id_reserva
+                         FROM reserva_habitacion
+                        GROUP BY id_reserva
+                       HAVING COUNT(*) >= 3 AND COUNT(DISTINCT check_in) > 1
+                        ORDER BY id_reserva
+                        FETCH FIRST 1 ROW ONLY)
+ ORDER BY rh.check_in, rh.id_habitacion;
+
+-- 7.11 Las restricciones hacen cumplir las reglas: dos intentos de violarlas que la base rechaza
+DECLARE
+  v_cancelada NUMBER;
+  v_temporada NUMBER;
+  v_hab       NUMBER;
+BEGIN
+  -- Regla: solo se resena una reserva COMPLETADA (fk_resena_reserva + ck_resena_estado)
+  SELECT MIN(id_reserva) INTO v_cancelada FROM reserva WHERE estado = 'CANCELADA';
+  BEGIN
+    INSERT INTO resena (id_reserva, estado_reserva, calificacion, comentario, fecha_resena)
+    VALUES (v_cancelada, 'COMPLETADA', 5, 'Excelente', SYSDATE);
+    DBMS_OUTPUT.PUT_LINE('7.11 FALLO: se aceptó la reseña de una reserva cancelada');
+  EXCEPTION
+    WHEN OTHERS THEN
+      DBMS_OUTPUT.PUT_LINE('7.11 Reseña de la reserva cancelada ' || v_cancelada || ' -> RECHAZADA: ' || SQLERRM);
+  END;
+
+  -- Regla: una habitacion tiene una sola tarifa por temporada (uq_tarifa_hab_temp)
+  SELECT MIN(id_habitacion) INTO v_hab FROM habitacion;
+  SELECT MIN(id_temporada) INTO v_temporada FROM tarifa WHERE id_habitacion = v_hab;
+  BEGIN
+    INSERT INTO tarifa (id_habitacion, id_temporada, valor_noche) VALUES (v_hab, v_temporada, 150000);
+    DBMS_OUTPUT.PUT_LINE('7.11 FALLO: se aceptó una segunda tarifa para la misma temporada');
+  EXCEPTION
+    WHEN OTHERS THEN
+      DBMS_OUTPUT.PUT_LINE('7.11 Segunda tarifa para la habitación ' || v_hab || ' -> RECHAZADA: ' || SQLERRM);
+  END;
+
+  ROLLBACK;
+END;
+/
